@@ -6,8 +6,7 @@ import React, {
   useContext,
 } from "react";
 import { io } from "socket.io-client";
-import Peer from "simple-peer";
-
+const SimplePeer = window.SimplePeer;
 const SocketContext = createContext();
 
 const socket = io("http://localhost:5000/");
@@ -41,8 +40,8 @@ const ContextProvider = ({ children }) => {
 
   const answerCall = () => {
     setCallAccepted(true);
-
-    const peer = new Peer({ initiator: false, trickle: false, stream: stream });
+    <script src="/node_modules/simple-peer/simplepeer.min.js"></script>;
+    const peer = new SimplePeer({ initiator: false, trickle: false, stream: stream });
 
     console.log(call.from, "call");
     peer.on("signal", (data) => {
@@ -60,7 +59,7 @@ const ContextProvider = ({ children }) => {
 
   const makeCall = (id) => {
 
-    const peer = new Peer({ initiator: true, trickle: false, stream: stream });
+    const peer = new SimplePeer({ initiator: true, trickle: false, stream: stream });
 
     peer.on("signal", (data) => {
       socket.emit("calluser", {
