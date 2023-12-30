@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 const SimplePeer = window.SimplePeer;
 const SocketContext = createContext();
 
-const socket = io("http://localhost:5000/");
+const socket = io("https://convo-server.onrender.com/");
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
